@@ -79,7 +79,7 @@ const editComment = (req, res) => {
     });
   }
   thinksyria.query(
-    ` UPDATE thinksyria.posts SET content='${content}' WHERE id='${commentId}' AND userId='${json.id}'`,
+    ` UPDATE thinksyria.comments SET content='${content}' WHERE id='${commentId}' AND userId='${json.id}'`,
     (err, result) => {
       if (err) {
         return res.send({
