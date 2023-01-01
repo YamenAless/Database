@@ -78,6 +78,12 @@ const editComment = (req, res) => {
       messages: "the content must be at least 10 chars",
     });
   }
+  if (!commentId) {
+    return res.send({
+      success: false,
+      messages: " CommentId is required",
+    });
+  }
   thinksyria.query(
     ` UPDATE thinksyria.comments SET content='${content}' WHERE id='${commentId}' AND userId='${json.id}'`,
     (err, result) => {
@@ -88,15 +94,9 @@ const editComment = (req, res) => {
           data: [],
         });
       }
-      if (commentId.length) {
-        return res.send({
-          success: true,
-          messages: "Comment Edited Successfully",
-        });
-      }
       return res.send({
-        success: false,
-        messages: " CommentId is required",
+        success: true,
+        messages: "Comment Edited Successfully",
       });
     }
   );
